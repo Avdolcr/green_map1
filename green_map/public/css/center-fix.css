@@ -1,0 +1,55 @@
+/* Center fix for Explore Map page */
+
+/* Main container centering */
+.main-container {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+}
+
+/* Explore page content container */
+.explore-map-page {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+}
+
+/* Top row containing map and catalogue */
+.top-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+  width: 100% !important;
+}
+
+/* Map container */
+.top-row .map-container {
+  width: 50% !important;
+}
+
+/* Tree list container */
+.top-row .list-container {
+  width: 50% !important;
+}
+
+/* Tree details section */
+.tree-details {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .top-row {
+    flex-direction: column !important;
+  }
+  
+  .top-row .map-container,
+  .top-row .list-container {
+    width: 100% !important;
+  }
+} 

@@ -1,0 +1,304 @@
+/* Add enhanced styling for cards, buttons, and general polish at the end of the file */
+
+/* Import a nice Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Base font settings */
+html {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improved Card Styling */
+.card {
+  @apply bg-white dark:bg-neutral-900 rounded-lg shadow-sm transition-all duration-300 border border-neutral-100 dark:border-neutral-800;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover {
+  @apply hover:shadow-md transition-all duration-300;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a subtle highlight to cards */
+.card::after, .card-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.3) 50%, rgba(16, 185, 129, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::after, .card-hover:hover::after {
+  opacity: 1;
+}
+
+/* Button Styling Enhancements */
+.primary-button {
+  @apply bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md transition-all duration-200 flex items-center justify-center disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-background font-medium;
+  box-shadow: 0 1px 2px rgba(16, 185, 129, 0.1);
+  transform: translateY(0);
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.15);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+.secondary-button {
+  @apply bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-text-primary px-4 py-2 rounded-md transition-all duration-200 flex items-center justify-center disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-neutral-300 focus:ring-offset-2 focus:ring-offset-background font-medium;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transform: translateY(0);
+}
+
+.secondary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.secondary-button:active {
+  transform: translateY(0);
+}
+
+/* Form Input Enhancements */
+.form-input {
+  @apply rounded-md border border-neutral-300 dark:border-neutral-700 shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white dark:bg-neutral-800 transition-all duration-200;
+}
+
+.form-input:focus {
+  @apply border-primary/50 dark:border-primary/50;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+/* Text Styling with better hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  @apply text-text-primary font-semibold tracking-tight;
+  line-height: 1.2;
+}
+
+h1 {
+  @apply text-2xl md:text-3xl;
+}
+
+h2 {
+  @apply text-xl md:text-2xl;
+}
+
+h3 {
+  @apply text-lg md:text-xl;
+}
+
+.text-primary {
+  @apply text-emerald-600 dark:text-emerald-500;
+}
+
+.text-primary-dark {
+  @apply text-emerald-700 dark:text-emerald-400;
+}
+
+.text-text-primary {
+  @apply text-neutral-900 dark:text-neutral-100;
+}
+
+.text-text-secondary {
+  @apply text-neutral-600 dark:text-neutral-400;
+  font-weight: 400;
+}
+
+/* Background Colors */
+.bg-primary {
+  @apply bg-emerald-600 dark:bg-emerald-600;
+}
+
+.bg-primary-dark {
+  @apply bg-emerald-700 dark:bg-emerald-700;
+}
+
+.bg-primary-light {
+  @apply bg-emerald-100 dark:bg-emerald-900;
+}
+
+.bg-background {
+  @apply bg-neutral-50 dark:bg-neutral-950;
+  background-image: 
+    radial-gradient(at 30% 20%, rgba(16, 185, 129, 0.03) 0px, transparent 50%),
+    radial-gradient(at 80% 70%, rgba(16, 185, 129, 0.02) 0px, transparent 50%);
+}
+
+/* Enhanced Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Custom scrollbar for browsers that support it */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 185, 129, 0.3) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-emerald-200 dark:bg-emerald-800 rounded-full;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  @apply bg-emerald-300 dark:bg-emerald-700;
+}
+
+/* Focus styles */
+*:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-opacity-50;
+}
+
+/* Table styles */
+table {
+  @apply w-full border-collapse;
+}
+
+table th {
+  @apply text-left p-2 bg-neutral-100 dark:bg-neutral-800 text-text-secondary text-xs font-medium border-b border-neutral-200 dark:border-neutral-700;
+}
+
+table td {
+  @apply p-2 border-b border-neutral-200 dark:border-neutral-800 text-sm;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+}
+
+.badge-primary {
+  @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-100;
+}
+
+.badge-secondary {
+  @apply bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100;
+}
+
+.badge-warning {
+  @apply bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100;
+}
+
+.badge-error {
+  @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100;
+}
+
+/* Add a shimmer effect for loading states */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .shimmer {
+  background: linear-gradient(90deg, #2a2a2a 25%, #333333 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* Tooltip styles */
+.tooltip {
+  @apply relative inline-block;
+}
+
+.tooltip::after {
+  @apply absolute px-2 py-1 text-xs rounded bg-neutral-900 text-white dark:bg-neutral-200 dark:text-neutral-900 opacity-0 invisible transition-all duration-200 text-center;
+  content: attr(data-tooltip);
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tooltip:hover::after {
+  @apply opacity-100 visible;
+}
+
+/* Progress bar styling */
+progress {
+  @apply w-full h-2 rounded-full overflow-hidden appearance-none;
+  -webkit-appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  @apply bg-neutral-200 dark:bg-neutral-700;
+}
+
+progress::-webkit-progress-value {
+  @apply bg-primary;
+  transition: width 0.3s ease;
+}
+
+progress::-moz-progress-bar {
+  @apply bg-primary;
+  transition: width 0.3s ease;
+}
+
+/* Add a subtle pattern to page backgrounds */
+.pattern-background {
+  background-color: rgba(16, 185, 129, 0.03);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .pattern-background {
+  background-color: rgba(16, 185, 129, 0.02);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+} 

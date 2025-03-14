@@ -1,0 +1,460 @@
+/* Global Reset & Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 10px rgba(228, 168, 83, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(228, 168, 83, 0.8); }
+  100% { text-shadow: 0 0 10px rgba(228, 168, 83, 0.5); }
+}
+
+/* Update the color variables with a fresh nature-inspired palette */
+:root {
+  --primary: #00796B;  /* Teal green */
+  --primary-light: #26A69A;
+  --primary-dark: #004D40;
+  --accent: #FFC107;  /* Warm amber */
+  --accent-light: #FFD54F;
+  --accent-dark: #FFA000;
+  --background: #1A237E;  /* Deep indigo */
+  --background-light: #283593;
+  --background-dark: #0D47A1;
+  --surface: rgba(38, 166, 154, 0.15);
+  --text: #FFFFFF;
+  --text-secondary: #B2EBF2;
+  --success: #00BFA5;
+  --error: #FF5252;
+  --gradient-1: #1A237E;
+  --gradient-2: #0D47A1;
+  --gradient-3: #01579B;
+  --gradient-4: #006064;
+}
+
+/* Main Container */
+.share-experience {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1f2c, #2d3748);
+  color: #e2e8f0;
+  padding: 2rem;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #48bb78, #38b2ac);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #a0aec0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: rgba(45, 55, 72, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.input-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #a0aec0;
+}
+
+.input-group .icon {
+  color: #48bb78;
+}
+
+input, textarea {
+  padding: 0.75rem;
+  background: rgba(45, 55, 72, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: #e2e8f0;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #48bb78;
+  box-shadow: 0 0 0 2px rgba(72, 187, 120, 0.2);
+}
+
+.map-container {
+  height: 300px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.file-upload {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.file-upload input {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(45, 55, 72, 0.7);
+  cursor: pointer;
+}
+
+.file-upload input::file-selector-button {
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  background: #48bb78;
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.file-upload input::file-selector-button:hover {
+  background: #38a169;
+}
+
+.image-preview {
+  margin-top: 1rem;
+}
+
+.image-preview img {
+  max-width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 2px solid #48bb78;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to right, #48bb78, #38b2ac);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .share-experience {
+    padding: 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .form-wrapper {
+    padding: 1rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+  border: 2px solid var(--background-dark);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Focus visible outline */
+:focus-visible {
+  outline: 2px solid #E4A853;
+  outline-offset: 2px;
+}
+
+/* Add a success state animation */
+.submit-btn.success {
+  background: linear-gradient(45deg, var(--success), #69F0AE);
+  animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Add new shimmer effect to headers */
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* Add form validation visual feedback */
+.form-group input:invalid,
+.form-group textarea:invalid {
+  border-color: var(--error);
+}
+
+.form-group input:valid,
+.form-group textarea:valid {
+  border-color: var(--success);
+}
+
+/* Share Experience Dark Mode Support */
+.dark-mode .share-experience-container {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+.dark-mode .experience-form {
+  background-color: var(--background-card);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-dark);
+}
+
+.dark-mode .form-title {
+  color: var(--text-primary);
+}
+
+.dark-mode .form-subtitle {
+  color: var(--text-secondary);
+}
+
+.dark-mode .form-label {
+  color: var(--text-primary);
+}
+
+.dark-mode .form-input,
+.dark-mode .form-textarea,
+.dark-mode .form-select {
+  background-color: var(--background);
+  color: var(--text-primary);
+  border-color: var(--primary-light);
+}
+
+.dark-mode .form-input:focus,
+.dark-mode .form-textarea:focus,
+.dark-mode .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.dark-mode .form-submit {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.dark-mode .form-submit:hover {
+  background-color: var(--primary-dark);
+}
+
+.dark-mode .form-submit:disabled {
+  background-color: var(--primary-light);
+  opacity: 0.7;
+}
+
+.dark-mode .file-upload-label {
+  background-color: var(--background);
+  border-color: var(--primary-light);
+  color: var(--text-primary);
+}
+
+.dark-mode .file-upload-label:hover {
+  background-color: var(--primary-light);
+  color: var(--text-light);
+}
+
+.dark-mode .success-message {
+  background-color: rgba(22, 163, 74, 0.2);
+  color: #4ade80;
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+.dark-mode .error-message {
+  background-color: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+.dark-mode .share-success-container {
+  background-color: var(--background-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.dark-mode .share-success-title {
+  color: var(--text-primary);
+}
+
+.dark-mode .share-success-text {
+  color: var(--text-secondary);
+}
+
+.dark-mode .share-success-button {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.dark-mode .share-success-button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Animation enhancements */
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.float-in {
+  animation: floatIn 0.6s ease-out forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+
+/* Shared styling for enhanced visual appeal */
+.form-group {
+  transition: all 0.3s ease;
+}
+
+.form-group:focus-within {
+  transform: translateY(-2px);
+}
+
+.form-input, 
+.form-textarea, 
+.form-select,
+.file-upload-label {
+  transition: all 0.3s ease;
+}

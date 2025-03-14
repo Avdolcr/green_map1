@@ -1,0 +1,580 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #7C3AED;
+  --primary-dark: #5B21B6;
+  --primary-light: #A78BFA;
+  --success: #10B981;
+  --error: #EF4444;
+  --dark: #111827;
+  --dark-secondary: #1F2937;
+  --text: #F3F4F6;
+  --text-secondary: #9CA3AF;
+}
+
+body {
+  background: var(--dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.12) 0%, transparent 40%);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(31, 41, 55, 0.7);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(124, 58, 237, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  animation: containerFade 0.6s ease-out;
+}
+
+@keyframes containerFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    backdrop-filter: blur(20px);
+  }
+}
+
+h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--primary), transparent);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.input-wrapper:focus-within::before {
+  opacity: 1;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  background: rgba(17, 24, 39, 0.9);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+}
+
+.map-section {
+  grid-column: 1 / -1;
+  background: rgba(17, 24, 39, 0.5);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  margin-bottom: 2rem;
+}
+
+.map-container {
+  height: 400px !important;
+  width: 100% !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(124, 58, 237, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.map-container:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.image-upload-section {
+  grid-column: 1 / -1;
+  background: rgba(17, 24, 39, 0.5);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.file-input-wrapper {
+  position: relative;
+  margin-top: 1rem;
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 2rem;
+  background: rgba(17, 24, 39, 0.8);
+  border: 2px dashed rgba(124, 58, 237, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+  background: rgba(17, 24, 39, 0.9);
+  border-color: var(--primary);
+}
+
+.image-preview {
+  margin-top: 1.5rem;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(17, 24, 39, 0.5);
+}
+
+.image-preview img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.image-preview:hover img {
+  transform: scale(1.05);
+}
+
+.submit-button {
+  grid-column: 1 / -1;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+/* Loading State */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(124, 58, 237, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s linear infinite;
+}
+
+/* Toast Notifications */
+[data-toast] {
+  background: rgba(31, 41, 55, 0.95) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 12px;
+  padding: 1rem !important;
+  color: var(--text);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(124, 58, 237, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 16px;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-dark {
+  background-color: #1e1e1e;
+}
+
+.text-white {
+  color: #e0e0e0;
+}
+
+.rounded-lg {
+  border-radius: 12px;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.duration-500 {
+  transition-duration: 0.5s;
+}
+
+.ease-in-out {
+  transition-timing-function: ease-in-out;
+}
+
+.transform {
+  transform: scale(1);
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+a {
+  color: #58a6ff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #1f6feb;
+}
+
+/* Custom Map Pin Styles */
+.custom-map-pin {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.custom-map-pin:hover {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+  transform: scale(1.1) translateY(-5px);
+}
+
+@keyframes enhancedPinDrop {
+  0% {
+    transform: translateY(-50px) scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px) scale(1.2);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translateY(-5px) scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.custom-map-pin {
+  animation: enhancedPinDrop 0.6s cubic-bezier(0.4, 0, 0.2, 1.5);
+}
+
+/* Enhanced image preview */
+.image-preview {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.image-preview img {
+  transform-origin: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1);
+}
+
+.image-preview:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.image-preview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(139, 92, 246, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.image-preview:hover::before {
+  opacity: 1;
+}
+
+/* Add this to make the map controls more visible */
+.leaflet-control-zoom {
+  border: none !important;
+  background: rgba(30, 30, 30, 0.9) !important;
+  backdrop-filter: blur(4px);
+}
+
+.leaflet-control-zoom a {
+  color: #8B5CF6 !important;
+  background: rgba(40, 40, 40, 0.9) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(50, 50, 50, 0.9) !important;
+  color: #9F7AEA !important;
+}
+
+/* Make attribution more visible */
+.leaflet-control-attribution {
+  background: rgba(30, 30, 30, 0.9) !important;
+  backdrop-filter: blur(4px);
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+}
+
+/* Form Group Hover Effects */
+.form-group:hover {
+  transform: translateX(5px);
+}
+
+.form-group::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  transition: width 0.3s ease;
+}
+
+.form-group:hover::after {
+  width: 100%;
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Add these styles for the Leaflet map */
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 12px;
+  background: rgba(17, 24, 39, 0.8) !important;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.8) contrast(1.2);
+}
+
+/* Enhance map controls visibility */
+.leaflet-control-container {
+  z-index: 1000;
+}
+
+.leaflet-control-zoom {
+  margin: 15px !important;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 18px !important;
+  background: rgba(31, 41, 55, 0.9) !important;
+  backdrop-filter: blur(8px);
+  color: var(--text) !important;
+  border: 1px solid rgba(124, 58, 237, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background: rgba(124, 58, 237, 0.2) !important;
+  color: var(--primary-light) !important;
+}
+
+/* Style the attribution */
+.leaflet-control-attribution {
+  background: rgba(31, 41, 55, 0.9) !important;
+  backdrop-filter: blur(8px);
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  margin: 5px !important;
+  font-size: 11px !important;
+  color: var(--text-secondary) !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--primary-light) !important;
+}
+
+.map-pin-icon {
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.2));
+  transition: all 0.2s ease;
+}
+
+.map-pin-icon:hover {
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.3));
+  transform: scale(1.1);
+} 

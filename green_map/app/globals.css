@@ -1,0 +1,1946 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide any broken images at the top of the page */
+body > img, 
+img[alt="Beautiful forest landscape"],
+img[alt="Forest landscape background"],
+body > div > img:first-of-type,
+body > *:first-child > img {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Root Variables */
+:root {
+  /* Primary Colors - Rich Forest Greens */
+  --primary: #2F5D50;
+  --primary-dark: #1C3832;
+  --primary-light: #4A7D6D;
+  
+  /* Secondary Colors - Sophisticated Earth Tones */
+  --secondary: #8BA888;
+  --secondary-light: #D9E5D6;
+  
+  /* Accent Colors - Professional Nature Tones */
+  --accent-sage: #7CA682;
+  --accent-moss: #5B8772;
+  --accent-cream: #F8F7F2;
+  
+  /* Background Colors */
+  --background: #F5F7F6;
+  --background-alt: #E9F0EC;
+  --background-card: rgba(255, 255, 255, 0.98);
+  
+  /* Text Colors */
+  --text-primary: #283E36;
+  --text-secondary: #506B61;
+  --text-light: #F8F9FA;
+
+  /* Animation Durations */
+  --animation-slow: 1000ms;
+  --animation-medium: 500ms;
+  --animation-fast: 300ms;
+  
+  /* Transitions */
+  --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 15px 25px rgba(0, 0, 0, 0.08), 0 5px 10px rgba(0, 0, 0, 0.04);
+  --shadow-focus: 0 0 0 3px rgba(76, 125, 109, 0.4);
+  
+  /* Border Radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+}
+
+/* Dark Mode Theme Toggle */
+body.dark-mode {
+  --background: #121A17;
+  --background-alt: #1A2520;
+  --background-card: rgba(35, 45, 40, 0.98);
+  
+  /* Text Colors */
+  --text-primary: #E6EAE8;
+  --text-secondary: #B0BCB7;
+  --text-light: #FFFFFF;
+  
+  /* Primary Colors - Elegant Forest Greens for Dark Mode */
+  --primary: #4A7D6D;
+  --primary-dark: #2F5D50;
+  --primary-light: #6B9E8E;
+  
+  /* Secondary Colors - Refined Earth Tones for Dark Mode */
+  --secondary: #6B8E67;
+  --secondary-light: #8BA888;
+  
+  /* Accent Colors - Adjusted for Dark Mode */
+  --accent-sage: #6B9E8E;
+  --accent-moss: #4A7D6D;
+  --accent-cream: #D9E5D6;
+  
+  /* Shadows for Dark Mode */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 15px 25px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.15);
+  --shadow-focus: 0 0 0 3px rgba(76, 125, 109, 0.5);
+  
+  /* Card properties */
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --card-bg: #232D28;
+  --card-border: rgba(74, 125, 109, 0.2);
+}
+
+/* System Preference Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode) {
+    --background: #121212;
+    --background-alt: #1E1E1E;
+    --background-card: rgba(42, 42, 42, 0.95);
+    
+    /* Text Colors */
+    --text-primary: #E0E0E0;
+    --text-secondary: #A5A5A5;
+    --text-light: #FFFFFF;
+    
+    /* Primary Colors - Darker Forest Greens */
+    --primary: #2C4A3C;
+    --primary-dark: #1E3429;
+    --primary-light: #3C6255;
+    
+    /* Secondary Colors - Darker Earth Tones */
+    --secondary: #61876E;
+    --secondary-light: #A6BB8D;
+    
+    /* Accent Colors - Adjusted for Dark Mode */
+    --accent-sage: #61876E;
+    --accent-moss: #3C6255;
+    --accent-cream: #A6BB8D;
+    
+    /* Shadows for Dark Mode */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+    --shadow-focus: 0 0 0 3px rgba(61, 103, 75, 0.5);
+    
+    /* Card properties */
+    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --card-bg: #272727;
+    --card-border: rgba(60, 98, 85, 0.2);
+  }
+}
+
+/* Dark Mode compatible map styles */
+.dark-mode .leaflet-container {
+  background-color: #1a1a1a;
+  filter: invert(92%) hue-rotate(180deg) brightness(95%) contrast(85%);
+}
+
+.dark-mode .leaflet-marker-icon,
+.dark-mode .leaflet-marker-shadow {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(85%);
+}
+
+/* General Dark Mode Gallery Styles */
+.dark-mode .gallery-container {
+  background-color: var(--background);
+}
+
+.dark-mode .gallery-item {
+  background-color: var(--background-card);
+  box-shadow: var(--shadow-md);
+}
+
+.dark-mode .gallery-item:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Dark Mode Form Styles */
+.dark-mode input, 
+.dark-mode textarea, 
+.dark-mode select {
+  background-color: var(--background-alt);
+  color: var(--text-primary);
+  border-color: var(--primary-light);
+}
+
+.dark-mode input::placeholder, 
+.dark-mode textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Smooth transitions for all elements when toggling modes */
+* {
+  /* Limit transition properties to only what's needed to avoid text blur */
+  transition-property: background-color, border-color, box-shadow, filter;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Text-specific elements should not have transitions for color to avoid blur */
+h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, label {
+  transition-property: background-color, border-color, box-shadow;
+  /* Ensure crisp text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* For elements where we don't want transitions */
+.no-transition {
+  transition: none !important;
+}
+
+/* ===== DARK MODE COMPATIBILITY FOR EXISTING STYLES ===== */
+
+/* Leaflet markers and popups dark mode compatibility */
+.dark-mode .leaflet-popup-content-wrapper,
+.dark-mode .leaflet-popup-tip {
+  background-color: var(--background-card);
+  color: var(--text-primary);
+}
+
+.dark-mode .leaflet-control-zoom a {
+  background-color: var(--background-card);
+  color: var(--text-primary);
+}
+
+/* Dark mode tables */
+.dark-mode table {
+  color: var(--text-primary);
+  border-color: var(--primary-light);
+}
+
+.dark-mode th {
+  background-color: var(--primary-dark);
+}
+
+.dark-mode tr:nth-child(even) {
+  background-color: var(--background-alt);
+}
+
+/* Common elements with dark mode styling */
+.dark-mode a {
+  color: var(--secondary-light);
+}
+
+.dark-mode button:not([class*="primary-"]):not([class*="secondary-"]) {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.dark-mode .card,
+.dark-mode .info-card,
+.dark-mode .tree-item,
+.dark-mode .list-container {
+  background-color: var(--background-card);
+  border-color: var(--primary-light);
+  color: var(--text-primary);
+}
+
+/* Default Body Styling With Smooth Transition */
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  transition: background-color var(--animation-medium) var(--transition-smooth),
+              color var(--animation-medium) var(--transition-smooth);
+}
+
+/* Main Title Animations */
+@keyframes slideFromLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideFromRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Title Styles */
+.title-container h2 {
+  font-size: 150px;
+  font-weight: 800;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideFromLeft 1s ease-out forwards;
+}
+
+.subtitle {
+  font-size: 50px;
+  color: var(--text-primary);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+/* Background Image */
+.home-background {
+  background-image: url('/bg-image.png');
+  background-size: 800px 800px;
+  background-position: center -5px; /* Move the image 100px upward */
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+/* Button Styles */
+.primary-button {
+  background: var(--primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all var(--animation-fast) var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+
+.primary-button:hover {
+  transform: var(--hover-lift);
+  background: var(--primary-light);
+  box-shadow: var(--card-shadow);
+}
+
+.primary-button:hover::after {
+  left: 100%;
+}
+
+.primary-button:active {
+  transform: var(--active-scale);
+}
+
+/* Card Styles */
+.info-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+  transition: all var(--animation-medium) var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: var(--hover-lift);
+  box-shadow: var(--card-shadow);
+}
+
+.info-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Map Container Styles */
+.map-card {
+  position: relative;
+  height: 530px;
+  border-radius: 47px;
+  overflow: hidden;
+}
+
+.map-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.interactive-map {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 47px;
+  pointer-events: auto; /* Enable map interaction */
+}
+
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(60, 98, 85, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Prevent overlay from blocking map interaction */
+  z-index: 2;
+}
+
+.map-card:hover .map-overlay {
+  opacity: 1;
+}
+
+/* Image Styles */
+.circular-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.circular-image:hover {
+  transform: scale(1.1) rotate(5deg);
+  border-color: var(--primary-light);
+}
+
+/* Text Content */
+.card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  color: var(--text-secondary);
+  font-weight: 500;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Grid Layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title-container h2 {
+    font-size: 80px;
+  }
+
+  .subtitle {
+    font-size: 30px;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .info-card {
+    margin: 1rem;
+  }
+}
+
+/* Loading Animation */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeInScale var(--animation-medium) var(--transition-smooth) both;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-alt);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 5px;
+  border: 2px solid var(--background-alt);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* New class for home page background */
+.home-background {
+  background-image: url('/bg-image.png');
+  background-size: 800px 800px;
+  background-position: center -5px; /* Move the image 100px upward */
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.boton-elegante {
+  padding: 15px 90px;
+  border: 2px solid #000000;
+  background-color: #15551B;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  left: 1200px; /* Move button to the right */
+  top: -190px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Drop shadow */
+}
+
+.boton-elegante::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 81, 1, 0.25) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.boton-elegante:hover::after {
+  transform: scale(4);
+}
+
+.boton-elegante:hover {
+  border-color: #666666;
+  background: #292929;
+}
+
+.boton-elegante2 {
+  padding: 15px 90px;
+  border: 2px solid #000000;
+  background-color: #15551B;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  left: 1130px; /* Move button to the right */
+  top: -120px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Drop shadow */
+}
+
+.boton-elegante2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 81, 1, 0.25) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.boton-elegante2:hover::after {
+  transform: scale(4);
+}
+
+.boton-elegante2:hover {
+  border-color: #666666;
+  background: #292929;
+}
+
+.boton-elegante3 {
+  padding: 15px 20px;
+  border: 2px solid #000000;
+  background-color: #424242;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  left: -60px; /* Move button to the right */
+  top: -80px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Drop shadow */
+}
+
+.boton-elegante3::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 81, 1, 0.25) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.boton-elegante3:hover::after {
+  transform: scale(4);
+}
+
+.boton-elegante3:hover {
+  border-color: #666666;
+  background: #292929;
+}
+
+.boton-elegante4 {
+  padding: 15px 20px;
+  border: 2px solid #000000;
+  background-color: #424242;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  left: -50px; /* Move button to the right */
+  top: -80px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Drop shadow */
+}
+
+.boton-elegante4::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 81, 1, 0.25) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.boton-elegante4:hover::after {
+  transform: scale(4);
+}
+
+.boton-elegante4:hover {
+  border-color: #666666;
+  background: #292929;
+}
+
+/* Styles from the component */
+.group-2,
+.group-2 * {
+  box-sizing: border-box;
+}
+
+.group-2 {
+  position: relative;
+  text-align: center;
+}
+
+.group-10 {
+  width: 330px;
+  height: 530px;
+  position: static;
+  margin: 0 auto;
+}
+
+.rectangle-4 {
+  background: #08500c;
+  border-radius: 47px;
+  width: 330px;
+  height: 530px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  box-shadow: 13px 4px 7.4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ellipse-2 {
+  background: #cfbca6;
+  border-radius: 50%;
+  width: 151px;
+  height: 141px;
+  position: absolute;
+  left: 89px;
+  top: 32px;
+}
+
+.rectangle-10 {
+  width: 139px;
+  height: 119px;
+  position: absolute;
+  left: 95px;
+  top: 64px;
+  object-fit: cover;
+}
+
+.about-us {
+  color: #FFFFFF;
+  text-align: left;
+  font-family: "K2D-Bold", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 60px;
+  top: 187px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-to-green-map-tree-atlas-of-naguilian {
+  color: #FFFFFF;
+  text-align: center;
+  font-family: "K2D-Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  position: absolute;
+  left: 12px;
+  top: 248px;
+  width: 306px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.rectangle-7 {
+  background: #3b6046;
+  border-radius: 29px;
+  width: 181px;
+  height: 42px;
+  position: absolute;
+  left: 74px;
+  top: 448px;
+}
+
+.rectangle-2,
+.rectangle-2 * {
+  box-sizing: border-box;
+}
+
+.rectangle-2 {
+  position: absolute;  /* Set to absolute positioning */
+  left: 550px;        /* Adjust left position */
+  border-radius: 47px;
+  width: 833px;
+  height: 530px;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+              0px 4px 20px 0px rgba(0, 0, 0, 0.25),
+              inset 0px 4px 7px 0px rgba(0, 0, 0, 0.25),
+              17px 4px 13.7px 0px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
+}
+
+.group-3,
+.group-3 * {
+  box-sizing: border-box;
+}
+
+.group-3 {
+  position: relative;
+  left: 700px;
+  text-align: center;
+}
+
+.group-11 {
+  width: 330px;
+  height: 530px;
+  position: static;
+  margin: 0 auto;
+}
+
+.rectangle-5 {
+  background: #08500c;
+  border-radius: 47px;
+  width: 330px;
+  height: 530px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  box-shadow: 13px 4px 7.4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ellipse-3 {
+  background: #cfbca6;
+  border-radius: 50%;
+  width: 151px;
+  height: 141px;
+  position: absolute;
+  left: 89px;
+  top: 32px;
+}
+
+.rectangle-11 {
+  width: 139px;
+  height: 119px;
+  position: absolute;
+  left: 95px;
+  top: 64px;
+  object-fit: cover;
+}
+
+.about-us1 {
+  color: #FFFFFF;
+  text-align: left;
+  font-family: "K2D-Bold", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 60px;
+  top: 187px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-to-green-map-tree-atlas-of-naguilian1 {
+  color: #FFFFFF;
+  text-align: center;
+  font-family: "K2D-Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  position: absolute;
+  left: 12px;
+  top: 248px;
+  width: 306px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Modern Animation Keyframes */
+@keyframes floatUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInRotate {
+  0% { transform: rotate(-5deg) scale(0.9); opacity: 0; }
+  100% { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+/* Particle Animation */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(166, 187, 141, 0.1) 0%, transparent 70%),
+    radial-gradient(circle at 80% 70%, rgba(234, 231, 177, 0.1) 0%, transparent 70%);
+  animation: particleMove 20s linear infinite;
+}
+
+/* Hero Section Styling */
+.hero-title {
+  color: var(--text-light);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-subtitle {
+  color: var(--secondary-light);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.hero-description {
+  color: var(--text-light);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.95;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.stagger-text h2 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  animation: fadeIn 0.8s ease forwards;
+  opacity: 0;
+}
+
+/* Gradient overlay for hero sections */
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--primary-dark);
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.primary-btn, .secondary-btn {
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0.5rem;
+}
+
+.primary-btn {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-md);
+}
+
+.secondary-btn {
+  background: var(--background);
+  color: var(--primary);
+  border: 2px solid var(--primary-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-icon {
+  transition: transform 0.3s ease;
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+  transform: translateY(-2px);
+}
+
+.primary-btn:hover .btn-icon,
+.secondary-btn:hover .btn-icon {
+  transform: rotate(15deg) scale(1.2);
+}
+
+/* Feature Cards */
+.feature-card {
+  background: var(--background-card);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.feature-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.card-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.card-btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Map Card */
+.map-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 400px;
+}
+
+.interactive-map {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Animations */
+@keyframes particleFloat {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+.animate-slide-in {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.5s;
+}
+
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards 1s;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes slideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 0;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .primary-btn, .secondary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Enhanced Text Glow Effect */
+.text-glow {
+  text-shadow: 
+    0 0 10px rgba(60, 98, 85, 0.2),
+    0 0 20px rgba(60, 98, 85, 0.1),
+    0 0 30px rgba(60, 98, 85, 0.05);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+/* Enhanced Particle Animation */
+.particles-2 {
+  animation-delay: -10s;
+  opacity: 0.5;
+}
+
+/* Enhanced Hover Effect */
+.hover-effect {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.hover-effect:hover::after {
+  left: 100%;
+}
+
+/* Card Enhancements */
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-light);
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(166, 187, 141, 0.1),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .card-background {
+  opacity: 1;
+}
+
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Button Styles */
+.card-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.card-btn:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
+/* Map Card Enhancements */
+.map-card {
+  position: relative;
+}
+
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(60, 98, 85, 0.8),
+    rgba(97, 135, 110, 0.8)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.map-card:hover .map-overlay {
+  opacity: 1;
+}
+
+.map-overlay h3 {
+  color: var(--accent-sage);
+  font-weight: 700;
+}
+
+.map-overlay p {
+  color: var(--background);
+}
+
+/* Hero Section Enhancements */
+.hero-text-wrapper {
+  position: relative;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 4rem;
+  }
+
+  .hero-image-wrapper {
+    margin-top: 2rem;
+  }
+
+  .feature-card {
+    margin: 1rem;
+  }
+}
+
+/* Loading Animation */
+.loaded .hero-content {
+  animation: slideUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Enhanced Animations */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.animate-pulse {
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float 6s infinite ease-in-out;
+}
+
+/* Enhanced Card Styles */
+.feature-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 2rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Enhanced Map Styles */
+.map-wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+.map-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 70%,
+    rgba(60, 98, 85, 0.1)
+  );
+  pointer-events: none;
+}
+
+.interactive-map {
+  width: 100%;
+  height: 400px;
+  filter: saturate(1.2) contrast(1.1);
+  transition: all 0.5s ease;
+}
+
+/* Enhanced Button Styles */
+.primary-action-btn, 
+.secondary-action-btn {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1;
+}
+
+.primary-action-btn::before,
+.secondary-action-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 50%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.primary-action-btn:hover::before,
+.secondary-action-btn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Enhanced Text Styles */
+.gradient-text::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.gradient-text:hover::after {
+  transform: scaleX(1);
+}
+
+/* Enhanced Background Effects */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(97, 135, 110, 0.1) 0%, 
+    transparent 50%);
+  animation: float 20s infinite linear;
+  pointer-events: none;
+}
+
+.particles-2 {
+  animation-delay: -10s;
+  opacity: 0.5;
+}
+
+/* Animation Delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+
+/* Add these new global animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Add these new utility classes */
+.animate-fade-in {
+  animation: fadeInUp var(--animation-medium) var(--transition-smooth) forwards;
+}
+
+.animate-scale-in {
+  animation: fadeInScale var(--animation-medium) var(--transition-bounce) forwards;
+}
+
+.animate-slide-in {
+  animation: slideInLeft var(--animation-medium) var(--transition-smooth) forwards;
+}
+
+.glass-effect {
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--card-radius);
+  transition: all var(--animation-medium) var(--transition-smooth);
+}
+
+.hover-lift {
+  transition: transform var(--animation-fast) var(--transition-bounce),
+              box-shadow var(--animation-fast) var(--transition-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Add smooth transitions for interactive elements */
+a, button, input, textarea {
+  transition: all var(--animation-fast) var(--transition-smooth);
+}
+
+/* Add focus styles for accessibility */
+:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Add prefers-reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Add these new interaction styles */
+.interactive-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform var(--animation-medium) var(--transition-smooth);
+}
+
+.interactive-hover:hover::after {
+  transform: translateX(100%);
+}
+
+/* Add responsive design improvements */
+@media (max-width: 768px) {
+  :root {
+    --card-padding: 1.5rem;
+    --card-radius: 15px;
+  }
+
+  .animate-fade-in,
+  .animate-scale-in,
+  .animate-slide-in {
+    animation-duration: var(--animation-fast);
+  }
+}
+
+/* Add prefers-reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Add these new interaction styles */
+.interactive-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform var(--animation-medium) var(--transition-smooth);
+}
+
+.interactive-hover:hover::after {
+  transform: translateX(100%);
+}
+
+/* Add focus styles for accessibility */
+:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Add these new animation keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes particleMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+/* Add these new classes */
+.animated-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, 
+    var(--primary-light) 0%, 
+    transparent 70%);
+  opacity: 0;
+  animation: glow 4s infinite;
+  pointer-events: none;
+}
+
+.glass-effect {
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--card-radius);
+  transition: all var(--animation-medium) var(--transition-smooth);
+}
+
+.hover-lift {
+  transition: transform var(--animation-medium) var(--transition-smooth),
+              box-shadow var(--animation-medium) var(--transition-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Enhanced card styles */
+.card-inner {
+  position: relative;
+  z-index: 1;
+  padding: var(--card-padding);
+}
+
+.card-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent);
+  opacity: 0;
+  transition: opacity var(--animation-medium) var(--transition-smooth);
+}
+
+.card-inner:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced button styles */
+.primary-action-btn,
+.secondary-action-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-action-btn::after,
+.secondary-action-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: rotate(45deg) translateX(-100%); }
+  100% { transform: rotate(45deg) translateX(100%); }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@layer utilities {
+  .animate-gradient {
+    animation: gradient 6s linear infinite;
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .animate-slideIn {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+}
+
+/* For completely stopping transitions during theme change */
+.no-transition, 
+.no-text-transition * {
+  transition: none !important;
+}
+
+/* Ensure text stays crisp in light mode with better contrast */
+.light-mode {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Improve text color contrast in light mode */
+  --text-primary: #1a3520;   /* Darker green for better readability */
+  --text-secondary: #2d5a27; /* Darker shade for secondary text */
+}
+
+/* Adjust text rendering specifically for dark mode */
+.dark-mode {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix z-index for navigation elements to ensure proper layering */
+nav, 
+.fixed,
+[class*="navbar"],
+[class*="nav-"] {
+  z-index: 1000 !important; /* Ensure navbar is above all other elements */
+  position: relative;
+}
+
+/* Fix z-index for map containers to stay below navbar */
+.leaflet-container,
+.map-container,
+[class*="map-"] {
+  z-index: 5 !important; /* Lower z-index to stay below navbar */
+}
+
+/* Ensure fixed navbar stays on top */
+.fixed {
+  z-index: 1000 !important;
+}
+
+/* Adjust positioning for all map container types */
+.map-container,
+.leaflet-container,
+[class*="map-"] {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Specific fix for map z-index issues */
+.map-z-fix {
+  z-index: 5 !important;
+}
+
+.map-z-fix .leaflet-map-pane {
+  z-index: 2 !important;
+}
+
+.map-z-fix .leaflet-google-layer {
+  z-index: 1 !important;
+}
+
+.map-z-fix .leaflet-control-container {
+  z-index: 4 !important;
+}
+
+/* Remove blur from all scientific names and tree items */
+.tree-item,
+.scientific-name,
+.tree-info,
+.tree-card,
+.tree-list-item,
+.tree-detail,
+[class*="scientific-"],
+[class*="tree-"] {
+  backdrop-filter: none !important;
+  filter: none !important;
+  text-shadow: none !important;
+  -webkit-font-smoothing: auto !important;
+  -moz-osx-font-smoothing: auto !important;
+}
+
+/* Override any transitions that could cause blur */
+.tree-item,
+.tree-card,
+.scientific-name {
+  transition-property: transform, background-color, border-color, box-shadow !important;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure proper contrast in both light and dark modes */
+.light-mode .scientific-name,
+.light-mode .tree-name,
+.light-mode .tree-item {
+  color: #1a3520 !important;
+  opacity: 1 !important;
+}
+
+.dark-mode .scientific-name,
+.dark-mode .tree-name,
+.dark-mode .tree-item {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Add the gradient-radial utility if it doesn't exist */
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+}

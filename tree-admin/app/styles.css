@@ -1,0 +1,185 @@
+/* app/styles.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root Variables - Aligned with green-map for consistency */
+:root {
+  /* Primary Colors - Rich Forest Greens */
+  --primary: #2F5D50;
+  --primary-dark: #1C3832;
+  --primary-light: #4A7D6D;
+  
+  /* Secondary Colors - Sophisticated Earth Tones */
+  --secondary: #8BA888;
+  --secondary-light: #D9E5D6;
+  
+  /* Accent Colors - Professional Nature Tones */
+  --accent-sage: #7CA682;
+  --accent-moss: #5B8772;
+  --accent-cream: #F8F7F2;
+  
+  /* Background Colors */
+  --background: #F5F7F6;
+  --background-alt: #E9F0EC;
+  --background-card: rgba(255, 255, 255, 0.98);
+  
+  /* Text Colors */
+  --text-primary: #283E36;
+  --text-secondary: #506B61;
+  --text-light: #F8F9FA;
+
+  /* Animation Durations */
+  --animation-slow: 1000ms;
+  --animation-medium: 500ms;
+  --animation-fast: 300ms;
+  
+  /* Transitions */
+  --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 15px 25px rgba(0, 0, 0, 0.08), 0 5px 10px rgba(0, 0, 0, 0.04);
+  --shadow-focus: 0 0 0 3px rgba(76, 125, 109, 0.4);
+  
+  /* Border Radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+}
+
+/* Dark Mode Theme Toggle */
+.dark {
+  --background: #121A17;
+  --background-alt: #1A2520;
+  --background-card: rgba(35, 45, 40, 0.98);
+  
+  /* Text Colors */
+  --text-primary: #E6EAE8;
+  --text-secondary: #B0BCB7;
+  --text-light: #FFFFFF;
+  
+  /* Primary Colors - Elegant Forest Greens for Dark Mode */
+  --primary: #4A7D6D;
+  --primary-dark: #2F5D50;
+  --primary-light: #6B9E8E;
+  
+  /* Secondary Colors - Refined Earth Tones for Dark Mode */
+  --secondary: #6B8E67;
+  --secondary-light: #8BA888;
+  
+  /* Accent Colors - Adjusted for Dark Mode */
+  --accent-sage: #6B9E8E;
+  --accent-moss: #4A7D6D;
+  --accent-cream: #D9E5D6;
+  
+  /* Shadows for Dark Mode */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 15px 25px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.15);
+  --shadow-focus: 0 0 0 3px rgba(76, 125, 109, 0.5);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary antialiased;
+  }
+}
+
+@layer components {
+  /* Map Container - Simplified */
+  .leaflet-container {
+    @apply w-full h-full rounded-lg z-10 shadow-md overflow-hidden;
+  }
+  
+  /* Form Elements */
+  .form-input {
+    @apply bg-white border border-neutral-200 rounded-md px-4 py-2 text-text-primary w-full
+    focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none transition-colors;
+  }
+  
+  .dark .form-input {
+    @apply bg-neutral-800 border-neutral-700 text-neutral-100;
+  }
+  
+  /* Button Styles */
+  .primary-button {
+    @apply bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 
+    rounded-md transition-colors focus:outline-none focus:ring-2 
+    focus:ring-primary focus:ring-offset-2 active:scale-95;
+  }
+  
+  .secondary-button {
+    @apply bg-secondary hover:bg-secondary-light text-white font-medium py-2 px-4 
+    rounded-md transition-colors focus:outline-none focus:ring-2 
+    focus:ring-secondary focus:ring-offset-2 active:scale-95;
+  }
+  
+  /* Card Styles */
+  .card {
+    @apply bg-background-card rounded-lg shadow-sm 
+    border border-neutral-200 p-4 transition-colors;
+  }
+  
+  .dark .card {
+    @apply bg-neutral-800 border-neutral-700;
+  }
+
+  .card-hover {
+    @apply transition-transform duration-300;
+  }
+  
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-md;
+  }
+}
+
+/* Scrollbar Styling - Simplified */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background-alt rounded-md;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary rounded-md hover:bg-secondary-light transition-colors;
+}
+
+/* Map Specific Styling - Simplified */
+.leaflet-control-attribution {
+  @apply bg-white/70 p-1 text-xs;
+}
+
+.leaflet-control-attribution a {
+  @apply text-primary;
+}
+
+.dark .leaflet-control-attribution {
+  @apply bg-neutral-800/70;
+}
+
+.dark .leaflet-control-attribution a {
+  @apply text-primary-light;
+}
+
+/* Accessibility Focus Styles */
+:focus {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+:focus:not(:focus-visible) {
+  @apply ring-0 ring-offset-0;
+}
+
+/* Reduce motion for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    @apply !transition-none !animate-none !scroll-auto;
+  }
+} 
